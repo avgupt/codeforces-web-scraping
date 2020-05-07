@@ -10,5 +10,5 @@ soup = BeautifulSoup(page.content, 'html.parser')
 
 results = soup.find_all('div', class_='datatable')
 
-for k in results.findAll():
+for k in results:
     print(k)
