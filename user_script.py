@@ -1,37 +1,37 @@
 import requests, json
 from bs4 import BeautifulSoup
 
-main_soup = ""
-main_data = ""
+user_soup = ""
+user_data = ""
 
 def extract_data(username):
-	main_URL = "https://codeforces.com/profile/" + username
-	main_page = requests.get(main_URL)
+	user_URL = "https://codeforces.com/profile/" + username
+	user_page = requests.get(user_URL)
 
-	global main_soup, main_data
-	main_soup = BeautifulSoup(main_page.content, 'html.parser')
-	main_data = {}
+	global user_soup, user_data
+	user_soup = BeautifulSoup(user_page.content, 'html.parser')
+	user_data = {}
 
-	main_data["rating"] = main_soup.find_all('span',class_ = "user-red")[1].text
-	main_data["experience"] = main_soup.find_all('span', class_ = "format-humantime")[1].text
+	user_data["rating"] = user_soup.find_all('span',class_ = "user-red")[1].text
+	user_data["experience"] = user_soup.find_all('span', class_ = "format-humantime")[1].text
 
-	main_location = []
-	for a in main_soup.find_all('a', href=True): 
+	user_location = []
+	for a in user_soup.find_all('a', href=True): 
 	    if a.text and (a['href'])[:17] == "/ratings/country/":
-	    	main_location.append(a.text)
+	    	user_location.append(a.text)
 
-	for i in main_location:
-		main_data["location"] = i
-	return save_data(main_data)
+	for i in user_location:
+		user_data["location"] = i
+	return save_data(user_data)
 
-def save_data(main_data):
-	with open('main_data.txt', 'w') as outfile:
-		json.dump(main_data, outfile)
+def save_data(user_data):
+	with open('user_data.txt', 'w') as outfile:
+		json.dump(user_data, outfile)
 
 def output_HTML():
-	global main_soup
-	print(main_soup.prettify)
+	global user_soup
+	print(user_soup.prettify)
 
 def output_data():
-	global main_data
-	print(main_data)
+	global user_data
+	print(user_data)
