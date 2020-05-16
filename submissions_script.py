@@ -1,10 +1,15 @@
 import requests, json
 from bs4 import BeautifulSoup
 
+sub_soup = ""
+sub_data = ""
+
 def extract_data(username):
     sub_page_num = 1
     sub_URL = "https://codeforces.com/submissions/" + username + "/page/" + str(sub_page_num)
     sub_table_body = ""
+
+    global sub_soup, sub_data
     sub_data = {}
     while True:
         sub_page = requests.get(sub_URL)
@@ -37,3 +42,12 @@ def save_data(sub_data):
     with open('submissions_data.txt', 'w') as sub_outfile:
         json.dump(sub_data, sub_outfile)
     return
+
+def output_HTML():
+	global sub_soup
+	print(sub_soup.prettify)
+
+def output_data():
+    ''' Prints data on last page'''
+    global sub_data
+    print(sub_data)

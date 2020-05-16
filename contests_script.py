@@ -1,12 +1,17 @@
 import requests, json
 from bs4 import BeautifulSoup
 
+contests_soup = ""
+contests_data = ""
+
 def extract_data(username):
     contests_URL = "https://codeforces.com/contests/with/" + username
     contests_page = requests.get(contests_URL)
 
+    global contests_soup, contests_data
     contests_soup = BeautifulSoup(contests_page.content, 'html.parser')
     contests_data = {}
+
     contests_table = contests_soup.find('div', 'datatable')
     contests_table_body = contests_table.find('tbody')
 
@@ -27,3 +32,11 @@ def extract_data(username):
 def save_data(contests_data):
     with open('contests_data.txt', 'w') as contests_outfile:
         json.dump(contests_data, contests_outfile)
+
+def output_HTML():
+	global contests_soup
+	print(contests_soup.prettify)
+
+def output_data():
+	global contests_data
+	print(contests_data)

@@ -1,10 +1,14 @@
 import requests, json
 from bs4 import BeautifulSoup
 
+main_soup = ""
+main_data = ""
+
 def extract_data(username):
 	main_URL = "https://codeforces.com/profile/" + username
 	main_page = requests.get(main_URL)
 
+	global main_soup, main_data
 	main_soup = BeautifulSoup(main_page.content, 'html.parser')
 	main_data = {}
 
@@ -23,3 +27,11 @@ def extract_data(username):
 def save_data(main_data):
 	with open('main_data.txt', 'w') as outfile:
 		json.dump(main_data, outfile)
+
+def output_HTML():
+	global main_soup
+	print(main_soup.prettify)
+
+def output_data():
+	global main_data
+	print(main_data)
