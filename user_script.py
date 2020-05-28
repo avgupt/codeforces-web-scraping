@@ -1,8 +1,17 @@
 import requests, json
 from bs4 import BeautifulSoup
+import urllib.request
 
 user_soup = ""
 user_data = ""
+
+
+def extract_data_usingAPI(username):
+	user_URL = "https://codeforces.com/api/user.info?handles=" + username
+	with urllib.request.urlopen(user_URL) as url:
+		user_data = json.loads(url.read().decode())
+	#print(user_data)
+	return save_data(user_data)
 
 def extract_data(username):
 	user_URL = "https://codeforces.com/profile/" + username
