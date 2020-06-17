@@ -24,7 +24,7 @@ def extract_data(username):
         for row in sub_rows:
             sub_cols = row.find_all('td')
             sub_cols = [ele.text.strip() for ele in sub_cols]
-            if sub_cols:
+            if sub_cols and sub_cols[0] != "No items":
                 sub_data[int(sub_cols[0])] = {
                     'When' : sub_cols[1],
                     'Who' : sub_cols[2],

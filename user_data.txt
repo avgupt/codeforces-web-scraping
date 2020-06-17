@@ -1,1 +1,1 @@
-{"rating": "2624", "experience": "10 years ago", "location": "Japan"}
+{"status": "OK", "result": [{"contribution": 0, "lastOnlineTimeSeconds": 1499939322, "friendOfCount": 0, "titlePhoto": "//userpic.codeforces.com/no-title.jpg", "handle": "OnYourFace", "avatar": "//userpic.codeforces.com/no-avatar.jpg", "registrationTimeSeconds": 1486650240}]}
