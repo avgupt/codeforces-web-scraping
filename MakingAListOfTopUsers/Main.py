@@ -30,10 +30,12 @@ def save_data(user_list):
 
 def print_data(user_list):
 	for i in user_list:
-		print( str(user_list.index(i)) + " " + i[0] + " " + i[1] + " " + str(i[2]))
+		print( str(user_list.index(i)+1) + " " + i[0] + " " + i[1] + " " + str(i[2]))
 
 
-listOfUsers(200)
+if __name__ == "__main__":  
+	number = int(input(">"))
+	listOfUsers(number)
 
 
 
