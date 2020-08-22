@@ -5,4 +5,5 @@
 - BeautifulSoup library
 
 ## Get Started
-Run main.py and enter CodeForces username
+1. Run main.py and enter CodeForces username
+2. To print a list of top rated users, run Main.py from MakingAListOfUsers
