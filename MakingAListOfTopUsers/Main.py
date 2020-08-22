@@ -12,18 +12,20 @@ def listOfUsers(n):
 	result = []
 	for i in users:
 		if 'country' in i:
-			result.append({'handle': i['handle'], 'country': i['country'], "maxRating": i['maxRating']})
+			result.append([i['handle'], i['country'], i['maxRating']])
 		else:
-			result.append({'handle': i['handle'], 'country': "Unknown", "maxRating": i['maxRating']})
-		
+			result.append([ i['handle'], "Unknown", i['maxRating']])
+	result = sorted(result, key=lambda x: -x[2])
+
 		
 	return save_data(result)
+
 
 def save_data(user_list):
 	with open('user_list.txt', 'w') as outfile:
 		json.dump(user_list, outfile)
 
-listOfUsers(10)
+listOfUsers(200)
 
 
 	
