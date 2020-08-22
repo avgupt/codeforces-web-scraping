@@ -1,14 +1,21 @@
 import urllib.request, json
 
 only_active = "false"
-query = "https://codeforces.com/api/user.ratedList" + only_active + "?lang=en"
+query = "https://codeforces.com/api/user.ratedList?activeOnly=" + only_active + "?lang=en"
 
-with urllib.request.urlopen(query) as url:
-	data = json.loads(url.read().decode())
-print(data["result"][0].keys())
-#print(data["result"])
-#print(size(data["status"]))
-#for i in range(10):
-#	l = data["result"]
-#	print(l[i])
+
+def listOfUsers():
+	with urllib.request.urlopen(query) as url:
+		data = json.loads(url.read().decode())
+	users = data["result"]
+	print(type(users))
+	return save_data(users)
+
+def save_data(user_list):
+	with open('user_list.txt', 'w') as outfile:
+		json.dump(user_list, outfile)
+
+listOfUsers()
+
+
 	
