@@ -11,14 +11,14 @@ def listOfUsers():
 
 	users = data["result"]
 
-	result = {}
+	result = []
 	for i in range(len(users)):
 		if 'country' in users[i]:
-			result[i] = [users[i]['handle'], users[i]['country'], users[i]['maxRating']]
+			result.append([users[i]['handle'], users[i]['country'], users[i]['maxRating']])
 		else:
-			result[i] = [ users[i]['handle'], "Unknown", users[i]['maxRating']]
+			result.append([ users[i]['handle'], "Unknown", users[i]['maxRating']])
 
-	result = {k: v for k, v in sorted(result.items(), key=lambda item: -item[1][2])}
+	result = sorted(result, key=lambda x: -x[2])
 
 	print_data(result)
 	return save_data(result)
@@ -29,8 +29,8 @@ def save_data(user_list):
 		json.dump(user_list, outfile)
 
 def print_data(user_list):
-	for i in user_list.keys():
-		print( str(i+1) + " " + user_list[i][0] + " " + user_list[i][1] + " " + str(user_list[i][2]))
+	for i in user_list:
+		print( str(user_list.index(i)+1) + " " + i[0] + " " + i[1] + " " + str(i[2]))
 
 
 if __name__ == "__main__":  
