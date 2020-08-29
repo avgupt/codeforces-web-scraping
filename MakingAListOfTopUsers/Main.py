@@ -18,10 +18,7 @@ def listOfUsers():
 		else:
 			result[i] = [ users[i]['handle'], "Unknown", users[i]['maxRating']]
 
-
-
 	result = {k: v for k, v in sorted(result.items(), key=lambda item: -item[1][2])}
-
 
 	print_data(result)
 	return save_data(result)
