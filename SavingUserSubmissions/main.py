@@ -49,4 +49,7 @@ def save_data(sub_data):
     return
 
 
-returnAcceptedSubmissions("Benq",4)
+
+Username = input("Enter the username: ")
+Number_of_pages = int(input("Enter the number of pages: "))
+returnAcceptedSubmissions(Username,Number_of_pages)
